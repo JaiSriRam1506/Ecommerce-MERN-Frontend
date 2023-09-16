@@ -2,6 +2,8 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import {responsive} from './data'
 
+
+/*NPM Carousel library which will need all the Carousel items */
 const ProductCarousel = ({products}) => {
   return (
     <div>

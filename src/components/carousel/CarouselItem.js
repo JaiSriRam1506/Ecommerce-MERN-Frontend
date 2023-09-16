@@ -3,6 +3,8 @@ import './Carousel.scss'
 import { Link } from 'react-router-dom'
 import {shortenText} from '../../utils/index'
 
+
+/*Each Carousel Item template */
 const CarouselItem = ({imageURL,name,price,description}) => {
   const addToCart=()=>{};
   return (

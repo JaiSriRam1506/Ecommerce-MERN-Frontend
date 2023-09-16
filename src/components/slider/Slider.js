@@ -12,17 +12,20 @@ const Slider = () => {
   let   slideInterval;
   const intervalTime=5000;
 
+
+  /*Infinite Slider Logic*/
   const prevSlide=()=>{
     setCurrentSlide(currentSlide===0?slideLength-1:currentSlide-1);
   }
   const nextSlide=()=>{
     setCurrentSlide(currentSlide===slideLength-1?0:currentSlide+1);
   }
-
+  /*It will set initial Slider to 0 whenever Component Render*/
   useEffect(()=>{
     setCurrentSlide(0);
   },[])
 
+  /*Logic for Auto Sliding*/
   useEffect(()=>{
     if(autoScroll){
         const auto=()=>{
@@ -30,7 +33,7 @@ const Slider = () => {
         }
         auto();
     }
-    return ()=> clearInterval(slideInterval);
+    return ()=> clearInterval(slideInterval);/*To Clear Interval Syntax*/
   },[currentSlide,slideInterval,autoScroll])
 
   return (

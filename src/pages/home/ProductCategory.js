@@ -18,7 +18,8 @@ const categories = [
       image: "https://i.ibb.co/fNkBYgr/c3.jpg",
     },
   ];
-  
+
+/*Making Category Card Item */
 const Category=({title,image})=>{
     const navigate=useNavigate();
     return(
@@ -33,6 +34,7 @@ const ProductCategory = () => {
   return (
     <div className='categories'>
     {
+        /*Mapping through each Category Card Item and showing all of them */
         categories.map((cat,index)=>{
             return(
                 <div key={cat.id} className='--flex-center'>
