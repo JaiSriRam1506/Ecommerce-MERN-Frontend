@@ -61,6 +61,7 @@ const Profile = () => {
     useEffect(()=>{
         if(!user){
             dispatch(getUser());
+            console.log("Image",user);
         }
     },[dispatch,user])
 
@@ -132,7 +133,7 @@ const Profile = () => {
                         <img src={imagePreview!==null?imagePreview:user?.photo} alt='profile'/>
                         <h3>Role:{user?.role}</h3>
                         {imagePreview && (
-                            <div className='--center-all'>
+                        <div className='--center-all'>
                         <button className='--btn --btn-secondary' onClick={savePhoto}>
                             <AiOutlineCloudUpload size={18}/>Upload Image
                         </button>
@@ -192,4 +193,4 @@ return(
 )
 }
 
-export default Profile
+export default Profile;

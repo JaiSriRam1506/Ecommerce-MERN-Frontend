@@ -38,6 +38,9 @@ const fixHeader=()=>{
     if(window.scrollY>50){
         setScroll(true)
     }
+    else{//This was an issue but somehow resolved if you can't put else condition then everything will go inside header
+        setScroll(false)
+    }
 }
 window.addEventListener('scroll',fixHeader)/*Keep on checking of Vertical scroll of window*/
 
@@ -84,15 +87,20 @@ const logoutUser=async()=>{
                 Shop Now
             </NavLink>
         </li>
+        <li>
+            <NavLink to='/admin/home' className={activeLink}>
+               | Admin
+            </NavLink>
+        </li>
     </ul>
 
     <div className={styles['header-right']}>
         <span className={styles.links}>
             <ShowOnLogin>
-            <NavLink to='/profile' className={activeLink}>
+            <Link to='/profile'>
                 <FaUserCircle size={16} color='#ff7722'/>
                 <UserName/>
-            </NavLink>
+            </Link>
             </ShowOnLogin>
             <ShowOnLogout>
             <NavLink to='/login' className={activeLink}>

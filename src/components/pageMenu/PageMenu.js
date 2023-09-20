@@ -17,7 +17,6 @@ const PageMenu = () => {
                     <NavLink to='/wishlist'>Wishlist </NavLink>
                 </li>
             </ul>
-
         </nav>
     </div>
   )
