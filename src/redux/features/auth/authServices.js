@@ -11,7 +11,7 @@ const login=async (userData)=>{
     const BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
     const API_URL=`${BACKEND_URL}/api/v1/user/`
     const response= await axios.post(API_URL+'login',userData)
-    console.log("loginStatus",response.data.data)
+    //console.log("loginStatus",response.data.data)
     return response.data.data;
 }
 
@@ -26,7 +26,7 @@ const loginStatus=async ()=>{
     const BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
     const API_URL=`${BACKEND_URL}/api/v1/user/`
     const response= await axios.get(API_URL+'loginStatus')
-    console.log("loginStatus",response.data)
+    //console.log("loginStatus",response.data)
     return response.data;
 }
 

@@ -1,8 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit'
-import authSlice from './features/auth/authSlice'
+import authReducers from './features/auth/authSlice'
+import CatBrandReducers from './features/category-brand/CatBrandSlice';
 
 export const store=configureStore({
     reducer:{
-        auth:authSlice,
+        auth:authReducers,
+        category:CatBrandReducers
     }
 });

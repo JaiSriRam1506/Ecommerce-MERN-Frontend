@@ -156,7 +156,7 @@ const authSlice = createSlice({
             state.isSuccess=false;
             state.user=null;
             toast.success("Logout Successful");
-            console.log(action.payload)
+            //console.log(action.payload)
         })
         .addCase(logout.rejected,(state,action)=>{
             state.isLoading=false;
@@ -164,7 +164,7 @@ const authSlice = createSlice({
             state.message=action.payload
             state.user=null;
             toast.error("Logout UnSuccessful");
-            console.log(action.payload)
+            //console.log(action.payload)
         })
 
          //Login Status
@@ -175,7 +175,7 @@ const authSlice = createSlice({
             state.isLoading=false;
             state.isSuccess=true;
             state.isLoggedIn=action.payload;
-            console.log("login Status",action.payload)
+            //console.log("login Status",action.payload)
             if(action.payload.message==='invalid signature'){
                 state.isLoggedIn=false;
             }
@@ -184,7 +184,7 @@ const authSlice = createSlice({
             state.isLoading=false;
             state.isError=true;
             state.message=action.payload;
-            console.log("login Status",action.payload)
+           // console.log("login Status",action.payload)
         })
 
          //getUser
@@ -196,13 +196,13 @@ const authSlice = createSlice({
             state.isSuccess=true;
             state.isLoggedIn=true;
             state.user=action.payload
-            console.log(action.payload)
+            //console.log(action.payload)
         })
         .addCase(getUser.rejected,(state,action)=>{
             state.isLoading=false;
             state.isError=true;
             state.message=action.payload;
-            console.log(action.payload)
+           // console.log(action.payload)
             toast.error(action.payload);
         })
 
@@ -222,7 +222,7 @@ const authSlice = createSlice({
             state.isError=true;
             state.message=action.payload;
             toast.error("User Profile didn't update");
-            console.log(action.payload)
+           //console.log(action.payload)
         })
 
         //updatePhoto
