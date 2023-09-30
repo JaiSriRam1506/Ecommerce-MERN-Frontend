@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../../components/loader/Loader'
 import { validateEmail } from '../../utils'
 import {toast} from 'react-toastify'
-import { AUTH_RESET, login } from '../../redux/features/auth/authSlice'
+import { AUTH_RESET, getUser, login } from '../../redux/features/auth/authSlice'
 
 const Login = () => {
  const [email, setEmail] = useState("");
@@ -29,7 +29,9 @@ const Login = () => {
     await dispatch(login(formData));
  }
  useEffect(()=>{
-  if(isLoggedIn && isSuccess)navigate('/');
+  if(isLoggedIn && isSuccess){
+    navigate('/');
+  }
   dispatch(AUTH_RESET())
 },[isLoggedIn,isSuccess,dispatch,navigate])
 

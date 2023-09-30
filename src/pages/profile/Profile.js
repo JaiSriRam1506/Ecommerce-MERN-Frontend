@@ -60,8 +60,7 @@ const Profile = () => {
 
     useEffect(()=>{
         if(!user){
-            dispatch(getUser());
-            console.log("Image",user);
+        dispatch(getUser());
         }
     },[dispatch,user])
 

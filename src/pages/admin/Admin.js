@@ -8,6 +8,7 @@ import Brand from '../../components/admin/brand/Brand'
 import AddProduct from '../../components/admin/addProduct/AddProduct'
 import ViewProduct from '../../components/admin/viewProducts/ViewProducts'
 import EditProduct from '../../components/admin/editProduct/EditProduct'
+import Coupon from '../../components/admin/coupon/Coupon'
 
 const Admin = () => {
   return (
@@ -22,6 +23,8 @@ const Admin = () => {
           <Route path='brand' element={<Brand/>}/>
 
           <Route path='add-product' element={<AddProduct/>}/>
+          <Route path='coupon' element={<Coupon/>}/>
+          
           <Route path='all-products' element={<ViewProduct/>}/>
           <Route path='edit-product/:id' element={<EditProduct/>}/>
         </Routes>

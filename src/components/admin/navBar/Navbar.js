@@ -26,6 +26,10 @@ function Navbar() {
           <li>
             <NavLink to='/admin/add-product' className={activeLink}>Add Product</NavLink>
           </li>
+
+          <li>
+            <NavLink to='/admin/coupon' className={activeLink}>Coupon</NavLink>
+          </li>
           <li>
             <NavLink to='/admin/category' className={activeLink}>Category</NavLink>
           </li>

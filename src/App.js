@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUser, loginStatus } from './redux/features/auth/authSlice';
 import Profile from './pages/profile/Profile';
 import Admin from './pages/admin/Admin'
+import AdminOnlyRoutes from './components/hiddenLink/AdminOnlyRoutes';
 
 const App = () => {
   axios.defaults.withCredentials=true;
@@ -41,7 +42,7 @@ const App = () => {
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/profile" element={<Profile/>}/>
-          <Route path="/admin/*" element={<Admin/>}/>
+          <Route path="/admin/*" element={<AdminOnlyRoutes><Admin/></AdminOnlyRoutes>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

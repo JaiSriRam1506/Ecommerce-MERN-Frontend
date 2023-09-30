@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AUTH_RESET, logout } from '../../redux/features/auth/authSlice'
 import { ShowOnLogin, ShowOnLogout } from '../hiddenLink/hiddenLink'
 import { UserName } from '../../pages/profile/Profile'
+import { AdminOnlyLink } from '../hiddenLink/AdminOnlyRoutes'
 
 
 /*Creating Header Logo so that we can use it everywhere */
@@ -88,9 +89,11 @@ const logoutUser=async()=>{
             </NavLink>
         </li>
         <li>
+            <AdminOnlyLink>
             <NavLink to='/admin/home' className={activeLink}>
                | Admin
             </NavLink>
+            </AdminOnlyLink>
         </li>
     </ul>
 
