@@ -6,7 +6,7 @@ import { useDispatch} from 'react-redux'
 import { getCategories } from '../../../redux/features/category-brand/CatBrandSlice'
 
 const Category = () => {
-  const dispatch=useDispatch()
+  //const dispatch=useDispatch()
   /*Not Required instead use await
   const reloadCategory=()=>{
     dispatch(getCategories());

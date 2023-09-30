@@ -248,5 +248,6 @@ const authSlice = createSlice({
 export const {AUTH_RESET} = authSlice.actions;
 
 export const selectUser=(state)=>state.auth.user;
+export const userIsLoggedIn=(state)=>state.auth.isLoggedIn;
 
 export default authSlice.reducer

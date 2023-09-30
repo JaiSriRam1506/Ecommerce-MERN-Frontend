@@ -21,6 +21,12 @@ function Navbar() {
             <NavLink to='/admin/home' className={activeLink}>Home</NavLink>
           </li>
           <li>
+            <NavLink to='/admin/all-products' className={activeLink}>All Products</NavLink>
+          </li>
+          <li>
+            <NavLink to='/admin/add-product' className={activeLink}>Add Product</NavLink>
+          </li>
+          <li>
             <NavLink to='/admin/category' className={activeLink}>Category</NavLink>
           </li>
           <li>
