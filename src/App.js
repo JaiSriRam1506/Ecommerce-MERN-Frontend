@@ -13,6 +13,9 @@ import { getUser, loginStatus } from './redux/features/auth/authSlice';
 import Profile from './pages/profile/Profile';
 import Admin from './pages/admin/Admin'
 import AdminOnlyRoutes from './components/hiddenLink/AdminOnlyRoutes';
+import PageNotFound from './pages/404/PageNotFound';
+import Product from './pages/shop/Product';
+import ProductDetails from './components/shop/productDetails/ProductDetails';
 
 const App = () => {
   axios.defaults.withCredentials=true;
@@ -42,7 +45,10 @@ const App = () => {
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/profile" element={<Profile/>}/>
+          <Route path="/shop" element={<Product/>}/>
+          <Route path="/product-details/:id" element={<ProductDetails/>}/>
           <Route path="/admin/*" element={<AdminOnlyRoutes><Admin/></AdminOnlyRoutes>}/>
+          <Route path="*" element={<PageNotFound/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

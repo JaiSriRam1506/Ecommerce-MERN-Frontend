@@ -24,7 +24,6 @@ const UploadWidget = ({files,setFiles}) => {
     //setSelectedImages(selectedImages.filter((img)=>console.log(img)))
     setImages(images.filter((img,index)=>index!==idx))
     //setImages(images.filter((img,index)=>console.log(img,index)))
-
     URL.revokeObjectURL(image);
     }
 

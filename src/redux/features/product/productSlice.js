@@ -93,6 +93,15 @@ const ProductSlice = createSlice({
     state.isSuccess=false
     state.isLoading=false
     state.message=""
+    },
+    GET_PRICE_RANGE(state,action){
+      const {products}=action.payload;
+      const tempArray=[]
+      products.map((product)=>{
+        tempArray.push(product.price);
+      })
+      state.maxPrice=Math.max(...tempArray);
+      state.minPrice=Math.min(...tempArray);
     }
   },
   extraReducers:(builder)=>{
@@ -206,7 +215,7 @@ const ProductSlice = createSlice({
   }
 });
 
-export const {PRODUCT_RESET} = ProductSlice.actions
+export const {PRODUCT_RESET,GET_PRICE_RANGE} = ProductSlice.actions
 
 export default ProductSlice.reducer;
 export const selectProduct=(state)=>state.product.product;

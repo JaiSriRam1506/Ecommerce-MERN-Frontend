@@ -54,7 +54,7 @@ const [search, setSearch] = useState('')
     await dispatch(getProducts())
   }
 
-//Paginate 
+// Start Paginate 
   const itemsPerPage=10;
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + itemsPerPage;
@@ -66,6 +66,8 @@ const [search, setSearch] = useState('')
     const newOffset = (event.selected * itemsPerPage) % filteredProduct?.length;
     setItemOffset(newOffset);
   };
+
+  //End Paginate
 
 
   return (
@@ -85,7 +87,7 @@ const [search, setSearch] = useState('')
         </div>
         {isLoading && <Spinner/>}
         <div className='table'>
-        {!isLoading && products.length===0?(<p>---No Products Found--</p>):(
+        {!isLoading && products?.length===0?(<p>---No Products Found--</p>):(
           <table>
             <thead>
               <tr>
@@ -99,7 +101,7 @@ const [search, setSearch] = useState('')
               </tr>
             </thead>
             <tbody>
-              {currentItems.map((product,index)=>{
+              {currentItems?.map((product,index)=>{
                 const {_id,name,category,price,quantity}=product;
                 return(
                   <tr>

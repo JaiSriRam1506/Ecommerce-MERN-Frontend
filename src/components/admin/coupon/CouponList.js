@@ -61,7 +61,7 @@ const CouponList = () => {
                     <tr key={_id}>
                       <td>{index+1}</td>
                       <td>{name}</td>
-                      <td>{discount}</td>
+                      <td>{discount}%Off</td>
                       <td>{createdAt.substring(0,10)}</td>
                       <td>{expiresAt.substring(0,10)}</td>
                       <td>

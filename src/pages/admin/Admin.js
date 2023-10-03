@@ -9,6 +9,7 @@ import AddProduct from '../../components/admin/addProduct/AddProduct'
 import ViewProduct from '../../components/admin/viewProducts/ViewProducts'
 import EditProduct from '../../components/admin/editProduct/EditProduct'
 import Coupon from '../../components/admin/coupon/Coupon'
+import PageNotFound from '../404/PageNotFound'
 
 const Admin = () => {
   return (
@@ -27,6 +28,7 @@ const Admin = () => {
           
           <Route path='all-products' element={<ViewProduct/>}/>
           <Route path='edit-product/:id' element={<EditProduct/>}/>
+          <Route path='*' element={<PageNotFound/>}/>
         </Routes>
       </div>
     </div>

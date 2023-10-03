@@ -48,7 +48,7 @@ const EditProduct = () => {
       regularPrice:product?.regularPrice,
       color:product?.color,
       description,
-      images:files
+      image:files
     }
     await dispatch(updateProduct({id,formData}))
   }
