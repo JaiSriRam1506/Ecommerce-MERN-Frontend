@@ -6,11 +6,20 @@ import {calculateAverageRating, shortenText} from '../../../utils/index'
 import {toast} from 'react-toastify'
 import DOMPurify from 'dompurify'
 import ProductRating from '../productRating/ProductRating'
+import { useDispatch } from 'react-redux'
+import { CART_OP, saveToCart } from '../../../redux/features/cart/cartSlice'
 
 const ProductItem = ({
     product,grid,_id,name,regularPrice,price,image
 }) => {
+
 const averageRating=calculateAverageRating(product?.ratings)
+const dispatch=useDispatch()
+
+const addToCart=async(product)=>{
+    await dispatch(CART_OP({product,Op:'add'}));
+    await dispatch(saveToCart({cartItems:JSON.parse(localStorage.getItem('cartItems'))}))
+}
   return (
     <Card cardClass={grid?`${styles.grid}`:`${styles.list}`}>
         <Link to={`/product-details/${_id}`}>
@@ -30,8 +39,8 @@ const averageRating=calculateAverageRating(product?.ratings)
                         DOMPurify.sanitize(shortenText(product?.description,150))}}></div>
                 }
             </div>
-                {product.quantity>0?(
-                    <button className='--btn --btn-primary'>
+                {product?.quantity>0?(
+                    <button className='--btn --btn-primary' onClick={()=>addToCart(product)}>
                         Add to Cart
                     </button>
                 ):(

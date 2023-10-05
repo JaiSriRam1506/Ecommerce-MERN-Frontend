@@ -1,5 +1,5 @@
 export const shortenText=(text,n)=>{
-    if(text.length && text.length>n){
+    if(text && text.length && text.length>n){
         const shotendText=text.substring(0,n).concat("...");
         return shotendText;
     }
@@ -28,4 +28,24 @@ export function calculateAverageRating(ratings) {
     }
   
     return totalStars / ratings.length;
+  }
+
+  export const getQuantityById=(products,_id)=>{
+    //console.log(products)
+    products.map((product)=> {
+      //console.log(product,_id)
+      return product._id===_id?product.cartQuantity:0
+    })
+  }
+
+  export function getCartQuantityById(products, id) {
+    //console.log(products.length)
+    for (let i = 0; i < products.length; i++) {
+      
+      if (products[i]._id === id) {
+        //console.log(products[i]._id,products[i].cartQuantity,id)
+        return products[i].cartQuantity;
+      }
+    }
+    return 0; // If the _id is not found, return 0 or any default value
   }

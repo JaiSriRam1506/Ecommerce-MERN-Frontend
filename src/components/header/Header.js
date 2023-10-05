@@ -9,6 +9,7 @@ import { AUTH_RESET, logout } from '../../redux/features/auth/authSlice'
 import { ShowOnLogin, ShowOnLogout } from '../hiddenLink/hiddenLink'
 import { UserName } from '../../pages/profile/Profile'
 import { AdminOnlyLink } from '../hiddenLink/AdminOnlyRoutes'
+import { CART_TOTAL_QUANTITY_PRICE } from '../../redux/features/cart/cartSlice'
 
 
 /*Creating Header Logo so that we can use it everywhere */
@@ -29,10 +30,15 @@ const Header = () => {
 const [showMenu, setShowMenu]=useState(false);
 const [scroll, setScroll] = useState(false)/* Var To Make Header Sticky */
 
+const {cartItems,cartTotalQuantity,cartTotalAmount} =useSelector((state)=>state.cart)
+
 const dispatch=useDispatch();
 const navigate=useNavigate();
 const {isLoggedIn,isSuccess,isLoading}=useSelector((state)=>state.auth)
 
+useEffect(()=>{
+    dispatch(CART_TOTAL_QUANTITY_PRICE({value:'add'}))
+  },[dispatch,cartItems,cartTotalAmount,cartTotalQuantity])
 
 //Fix or Stick Header
 const fixHeader=()=>{
@@ -58,7 +64,7 @@ const cart=(
         <Link to='/cart'>
             Cart
             <FaShoppingCart size={20}/>
-            <p>0</p>
+            <p>{cartTotalQuantity}</p>
         </Link>
     </span>
 )

@@ -4,6 +4,7 @@ import CatBrandReducers from './features/category-brand/CatBrandSlice';
 import ProductReducers from './features/product/productSlice'
 import CouponReducers from './features/coupon/couponSlice'
 import FilterReducers from './features/product/filterSlice'
+import CartReducers from './features/cart/cartSlice'
 
 export const store=configureStore({
     reducer:{
@@ -11,6 +12,7 @@ export const store=configureStore({
         category:CatBrandReducers,
         product:ProductReducers,
         coupon:CouponReducers,
-        filter:FilterReducers
+        filter:FilterReducers,
+        cart:CartReducers
     }
 });

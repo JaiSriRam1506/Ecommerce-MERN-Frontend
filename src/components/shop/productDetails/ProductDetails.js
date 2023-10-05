@@ -9,6 +9,7 @@ import { calculateAverageRating,shortenText } from '../../../utils'
 import { toast } from 'react-toastify'
 import DOMPurify from 'dompurify'
 import Card from '../../card/Card'
+import { CART_OP, saveToCart } from '../../../redux/features/cart/cartSlice'
 
 const ProductDetails = () => {
   const {id}=useParams();
@@ -16,6 +17,9 @@ const ProductDetails = () => {
   const [imageIndex, setImageIndex] = useState(0)
   const dispatch=useDispatch();
   const averageRating=calculateAverageRating(product?.ratings)
+
+  const {cartItems}=useSelector((state)=>state.cart)
+  const cartProduct=cartItems.find((cartItem)=>cartItem._id===id);
 
   useEffect(()=>{
     dispatch(getProduct(id))
@@ -37,6 +41,16 @@ const ProductDetails = () => {
     return ()=>clearInterval(slideInterval)
   },[imageIndex,product,slideInterval])
 
+
+  const addToCart=async(product)=>{
+      await dispatch(CART_OP({product,Op:'add'}));
+      await dispatch(saveToCart({cartItems:JSON.parse(localStorage.getItem('cartItems'))}))
+  }
+
+  const removeFromCart=(product)=>{
+    dispatch(CART_OP({product,Op:'sub'}));
+    dispatch(saveToCart({cartItems:JSON.parse(localStorage.getItem('cartItems'))}))
+}
 
   return (
     <section>
@@ -105,12 +119,19 @@ const ProductDetails = () => {
                   </p>
                   <p>{product?.sold}</p>
                 </div>
+                {cartProduct?(
+                    <div className={styles.count}>
+                    <>
+                    <button className='--btn' onClick={()=>addToCart(product)}>+</button>
+                    <p><b>{cartProduct.cartQuantity}</b></p>
+                    <button className='--btn' onClick={()=>removeFromCart(product)}>-</button>
+                    </>
+                </div>):null}
                 <div className='--flex-start'>
-                {product.quantity>0?(
-                    <button className='--btn --btn-primary'>
+                {product?.quantity>0?(
+                    <button className='--btn --btn-primary' onClick={()=>addToCart(product)}>
                         Add to Cart
-                    </button>
-                    
+                    </button> 
                 ):(
                     <button className='--btn --btn-red' onClick={()=>toast.error('Sorry the product is out of stock')}>
                         Out of Stock
