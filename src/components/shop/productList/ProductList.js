@@ -26,15 +26,15 @@ const ProductList = ({products}) => {
   },[dispatch,sort,products])
 
   // Start Paginate 
-const itemsPerPage=3;
+const itemsPerPage=6;
 const [itemOffset, setItemOffset] = useState(0);
 const endOffset = itemOffset + itemsPerPage;
-const currentItems = products?.slice(itemOffset, endOffset);
-const pageCount = Math.ceil(products?.length / itemsPerPage);
+const currentItems = filteredProduct?.slice(itemOffset, endOffset);
+const pageCount = Math.ceil(filteredProduct?.length / itemsPerPage);
 
 // Invoke when user click to request another page.
 const handlePageClick = (event) => {
-  const newOffset = (event.selected * itemsPerPage) % products?.length;
+  const newOffset = (event.selected * itemsPerPage) % filteredProduct?.length;
   setItemOffset(newOffset);
 };
 

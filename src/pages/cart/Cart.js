@@ -7,15 +7,18 @@ import { CART_OP, CART_TOTAL_QUANTITY_PRICE, REMOVE_ALL, saveToCart } from '../.
 import {FaTrash} from 'react-icons/fa'
 import { shortenText } from '../../utils'
 import Card from '../../components/card/Card'
+import VerifyCoupon from '../../components/verifyCoupon/VerifyCoupon'
+
 
 const Cart = () => {
   const dispatch=useDispatch();
   const navigate=useNavigate();
+  const {coupon}=useSelector((state)=>state.coupon)
   const {cartItems,cartTotalQuantity,cartTotalAmount} =useSelector((state)=>state.cart)
 
   useEffect(()=>{
-    dispatch(CART_TOTAL_QUANTITY_PRICE({value:'add'}))
-  },[dispatch,cartItems,cartTotalAmount,cartTotalQuantity])
+    dispatch(CART_TOTAL_QUANTITY_PRICE({value:'add',coupon}))
+  },[dispatch,cartItems,cartTotalAmount,cartTotalQuantity,coupon])
 
 
 const addToCart=(product)=>{
@@ -101,6 +104,7 @@ const removeAll=()=>{
                                     <h4>SubTotal</h4>
                                     <h3>{`Rs ${cartTotalAmount.toFixed(2)}`}</h3>
                                 </div>
+                               <VerifyCoupon/>
                             </Card>
                         </div>
                     </div>

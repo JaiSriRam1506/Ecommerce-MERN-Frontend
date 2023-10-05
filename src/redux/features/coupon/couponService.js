@@ -17,10 +17,11 @@ const getCoupons=async ()=>{
 }
 
 //getCoupon
-const getCoupon=async (name)=>{
+const getCoupon=async (coupon)=>{
     const BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
     const API_URL=`${BACKEND_URL}/api/v1/`
-    const response= await axios.get(API_URL+'coupon/getCoupon/',name)
+    console.log(coupon,API_URL+'coupon/getCoupon/')
+    const response= await axios.get(API_URL+'coupon/getCoupon/'+coupon)
     return response.data;
 }
 

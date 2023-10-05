@@ -1,7 +1,11 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify';
 import { shortenText,getQuantityById,getCartQuantityById } from '../../../utils'
 import cartService from './cartService';
+
+function applyDiscount(cartTotalAmount,discountPercentage){
+    return cartTotalAmount-((discountPercentage/100)*cartTotalAmount)
+}
 
 const FRONTEND_URL=process.env.REACT_APP_FRONTEND_URL;
 
@@ -9,7 +13,7 @@ const initialState = {
     cartItems:localStorage.getItem('cartItems')?JSON.parse(localStorage.getItem('cartItems')):[],
     cartTotalQuantity:0,
     cartTotalAmount:0,
-    fixedCartTotalAmount:0,
+    initialCartTotalAmount:0,
     isError:false,
     isSuccess:false,
     isLoading:false,
@@ -123,7 +127,13 @@ const cartSlice = createSlice({
         totalPr+=Number(cartQuantity*price);
         })
        }
-       state.cartTotalAmount=totalPr;
+       state.initialCartTotalAmount=totalPr;
+       if(action.payload && action.payload.coupon){
+        state.cartTotalAmount=applyDiscount(totalPr,action.payload.coupon.discount);
+       }
+       else{
+        state.cartTotalAmount=totalPr;
+       }
        state.cartTotalQuantity=totalQty;    
   }
 },
