@@ -5,6 +5,8 @@ import ProductReducers from './features/product/productSlice'
 import CouponReducers from './features/coupon/couponSlice'
 import FilterReducers from './features/product/filterSlice'
 import CartReducers from './features/cart/cartSlice'
+import CheckoutReducers from './features/checkout/checkoutSlice'
+import OrderReducers from './features/order/orderSlice'
 
 export const store=configureStore({
     reducer:{
@@ -13,6 +15,8 @@ export const store=configureStore({
         product:ProductReducers,
         coupon:CouponReducers,
         filter:FilterReducers,
-        cart:CartReducers
+        cart:CartReducers,
+        checkout:CheckoutReducers,
+        order:OrderReducers
     }
 });

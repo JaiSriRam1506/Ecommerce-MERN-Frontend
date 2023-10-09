@@ -2,13 +2,13 @@ import styles from './auth.module.scss'
 import loginIMG from '../../assets/login.png'
 import Card from '../../components/card/Card'
 import {useEffect, useState} from 'react'
-import {Link, useNavigate} from 'react-router-dom'
+import {Link, useNavigate, useSearchParams} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../../components/loader/Loader'
 import { validateEmail } from '../../utils'
 import {toast} from 'react-toastify'
 import { AUTH_RESET, getUser, login } from '../../redux/features/auth/authSlice'
-import { getCart } from '../../redux/features/cart/cartSlice'
+import { getCart, saveToCart } from '../../redux/features/cart/cartSlice'
 
 const Login = () => {
  const [email, setEmail] = useState("");
@@ -16,6 +16,8 @@ const Login = () => {
  const dispatch=useDispatch();
  const navigate=useNavigate();
  const {isLoggedIn,isSuccess,isLoading}=useSelector((state)=>state.auth)
+ const [urlParams]=useSearchParams();
+ const redirect=urlParams.get('redirect')
 
  const loginUser=async(e)=>{
     e.preventDefault();
@@ -31,11 +33,14 @@ const Login = () => {
  }
  useEffect(()=>{
   if(isLoggedIn && isSuccess){
-    //navigate('/');
+    if(redirect==='cart'){
+      dispatch(saveToCart({cartItems:JSON.parse(localStorage.getItem('cartItems'))}))
+      navigate('/cart')
+    }
     dispatch(getCart())
   }
   dispatch(AUTH_RESET())
-},[isLoggedIn,isSuccess,dispatch,navigate])
+},[isLoggedIn,isSuccess,dispatch,navigate,redirect])
 
   return (
     <>

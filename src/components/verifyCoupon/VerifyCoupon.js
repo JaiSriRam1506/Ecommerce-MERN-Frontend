@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Card from '../card/Card'
 import { COUPON_RESET, getCoupon } from '../../redux/features/coupon/couponSlice'
 
-const CardDiscount=()=>{
+export const CartDiscount=()=>{
   const {initialCartTotalAmount}=useSelector((state)=>state.cart)
   const {coupon}=useSelector((state)=>state.coupon)
   return(
@@ -38,7 +38,7 @@ const VerifyCoupon = () => {
 
   return (
     <>
-    <CardDiscount/>
+    <CartDiscount/>
     <div className='--flex-between'>
       <p>Have a Coupon</p>
       {coupon===null?(

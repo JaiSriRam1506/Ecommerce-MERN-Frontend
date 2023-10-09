@@ -49,3 +49,12 @@ export function calculateAverageRating(ratings) {
     }
     return 0; // If the _id is not found, return 0 or any default value
   }
+
+  export const extractCartQuantity_Id=(products)=>{
+    return products.map((product,index)=>{
+     return {
+        _id:product._id,
+        cartQuantity:product.cartQuantity
+      }
+    })
+  }

@@ -8,6 +8,7 @@ import {FaTrash} from 'react-icons/fa'
 import { shortenText } from '../../utils'
 import Card from '../../components/card/Card'
 import VerifyCoupon from '../../components/verifyCoupon/VerifyCoupon'
+import PaymentOptions from '../../components/paymentOptions/PaymentOptions'
 
 
 const Cart = () => {
@@ -105,6 +106,8 @@ const removeAll=()=>{
                                     <h3>{`Rs ${cartTotalAmount.toFixed(2)}`}</h3>
                                 </div>
                                <VerifyCoupon/>
+                               <div className='--underline --my'></div>
+                               <PaymentOptions/>
                             </Card>
                         </div>
                     </div>
