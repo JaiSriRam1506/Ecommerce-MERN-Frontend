@@ -24,9 +24,18 @@ const getOrder=async (id)=>{
     return response.data;
 }
 
+//Update Order Status
+const updateOrderStatus=async (id,formData)=>{
+    const BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
+    const API_URL=`${BACKEND_URL}/api/v1/`
+    const response= await axios.patch(API_URL+'order/updateStatus/'+id,formData)
+    return response.data;
+}
+
 const OrderService={
     createOrder,
     getOrders,
-    getOrder
+    getOrder,
+    updateOrderStatus
 }
 export default OrderService

@@ -45,6 +45,18 @@ export const GetOrder=createAsyncThunk('order/getOrder',async(id,thunkAPI)=>{
 
 })
 
+//Update Order Status
+export const updateOrderStatus=createAsyncThunk('order/updateStatus',async({id,formData},thunkAPI)=>{
+    try {
+        return await OrderService.updateOrderStatus(id,formData);
+    } catch (error) {
+        const message=(error.response && error.response.data && error.response.data.message) ||
+        error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+
+})
+
 const orderSlice = createSlice({
   name: "order",
   initialState,
@@ -114,6 +126,26 @@ const orderSlice = createSlice({
             state.message=action.payload.message
             toast.error(action.payload.message)
             console.log(action.payload)
+        })
+
+        //Update Order Status
+        .addCase(updateOrderStatus.pending,(state,action)=>{
+            state.isLoading=true;
+
+        })
+        .addCase(updateOrderStatus.fulfilled,(state,action)=>{
+            state.isError=false
+            state.isSuccess=true
+            state.isLoading=false
+            state.message=action.payload.message
+            toast.success(action.payload.message)
+        })
+        .addCase(updateOrderStatus.rejected,(state,action)=>{
+            state.isError=true
+            state.isSuccess=false
+            state.isLoading=false
+            state.message=action.payload.message
+            toast.error(action.payload.message)
         })
   }
 });

@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
+import OrderDetailsComp from '../../../pages/order/OrderDetailsComp'
 import { useDispatch } from 'react-redux'
-import { GetOrder } from '../../redux/features/order/orderSlice';
 import { useParams } from 'react-router-dom';
-import OrderDetailsComp from './OrderDetailsComp';
+import { GetOrder } from '../../../redux/features/order/orderSlice';
+import ChangeOrderStatus from '../changeOrderStatus/ChangeOrderStatus';
 
 const OrderDetails = () => {
   const dispatch=useDispatch();
@@ -13,9 +14,10 @@ const OrderDetails = () => {
   },[dispatch,id])
 
   return (
-    <section>
-      <OrderDetailsComp orderPageLink={"/order-history"}/>
-    </section>
+    <>
+    <OrderDetailsComp orderPageLink={"/admin/orders"}/>
+    <ChangeOrderStatus/>
+    </>
   )
 }
 

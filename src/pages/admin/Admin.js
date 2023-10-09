@@ -10,6 +10,8 @@ import ViewProduct from '../../components/admin/viewProducts/ViewProducts'
 import EditProduct from '../../components/admin/editProduct/EditProduct'
 import Coupon from '../../components/admin/coupon/Coupon'
 import PageNotFound from '../404/PageNotFound'
+import Orders from '../../components/admin/order/Orders'
+import OrderDetails from '../../components/admin/order/OrderDetails'
 
 const Admin = () => {
   return (
@@ -25,6 +27,9 @@ const Admin = () => {
 
           <Route path='add-product' element={<AddProduct/>}/>
           <Route path='coupon' element={<Coupon/>}/>
+
+          <Route path='orders' element={<Orders/>}/>
+          <Route path='/order-details/:id' element={<OrderDetails/>}/>
           
           <Route path='all-products' element={<ViewProduct/>}/>
           <Route path='edit-product/:id' element={<EditProduct/>}/>
